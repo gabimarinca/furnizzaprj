@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+ /* Dropdown Menu Styles */
+ header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    position: relative; /* Important: make the parent positioned for absolute child */
+}
+
+.dropdown {
+    position: absolute; /* Child of li, should be absolute */
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    border-radius: 5px;
+    display: none;
+    min-width: 150px;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+
+.dropdown a {
+    padding: 10px;
+    display: block;
+    color: white;
+}
+
+.dropdown a:hover {
+    background-color: #555;
+}
+.hero {
+    height: 400px;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+
+.hero h1 {
+    font-size: 3rem;
+}
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 15px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+} 

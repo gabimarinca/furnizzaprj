@@ -1,0 +1,54 @@
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funrnizza Shopping Center</title>
+    <link rel="stylesheet" type='text/css' href="{% static 'assets/css/general.css' %}">
+</head>
+
+ <header>
+        <h1>Furnizza</h1>
+        <nav>
+            <ul>
+                <li><a href="http://127.0.0.1:8000/home/">Home</a></li>
+                <li>
+                    <a href="#" id="category-link">Category⇩</a>
+                    <ul class="dropdown" id="category-dropdown">
+                        <li><a href="#">Mobilier</a></li>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Books</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Shop</a></li>
+                <li>
+                    <a href="#" id="vendors-link">Vendors⇩</a>
+                    <ul class="dropdown" id="vendors-dropdown">
+                        <li><a href="#">Ikea</a></li>
+                        <li><a href="#">Furnizza</a></li>
+                        <li><a href="#">Amazon</a></li>
+                        <li><a href="#">Bonami</a></li>
+                    </ul>
+                </li>
+                <li><a href="http://127.0.0.1:8000/about">About</a></li>
+                <li><a href="http://127.0.0.1:8000/contact">Contact</a></li>
+                <li>
+                    <a href="#" id="account-link">
+                        <img src="{% static 'assets/imgs/accountLogo.png' %}" alt="Account" class="account-logo">
+                    </a>
+                    <ul class="dropdown" id="account-dropdown">
+                        <li><a href="#">View Profile</a></li>
+                        <li><a href="#">View Cart</a></li>
+                        <li><a href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <form action="{}" method="GET" style="display: flex; margin-top: 10px;">
+            <input type="text" name="query" placeholder="Search..." 
+                   style="padding: 5px; flex: 1; border: 1px solid #ccc; border-radius: 3px;">
+            <button type="submit" style="padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; margin-left: 5px;">
+                ⌕
+            </button>
+        </form> 
+    </header>

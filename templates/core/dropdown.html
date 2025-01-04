@@ -1,0 +1,26 @@
+<script>
+         function toggleDropdown(link, dropdown) {
+    link.addEventListener('click', function(event) {
+        event.preventDefault(); 
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', function(event) {
+        if (!link.contains(event.target) && !dropdown.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+    } 
+    const categoryLink = document.getElementById('category-link');
+    const vendorsLink = document.getElementById('vendors-link');
+    const categoryDropdown = document.getElementById('category-dropdown');
+    const vendorsDropdown = document.getElementById('vendors-dropdown');
+
+    const accountLink = document.getElementById('account-link');
+    const accountDropdown = document.getElementById('account-dropdown');
+
+    toggleDropdown(categoryLink, categoryDropdown);
+    toggleDropdown(vendorsLink, vendorsDropdown);
+    toggleDropdown(accountLink, accountDropdown);
+
+</script>

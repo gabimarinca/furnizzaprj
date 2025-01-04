@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funrnizza Shopping Center</title>
+    <link rel="stylesheet" type='text/css' href="{% static 'assets/css/general.css' %}">
+</head>
+
+<body>
+    {% include 'core/header.html' %}
+
+    <main>
+        <h1>About Furnizza</h1>
+        <p>
+            Furnizza is an innovative e-commerce platform designed to make buying furniture simple, efficient, and enjoyable.
+            Our platform offers a wide range of furniture options, from modern and minimalist designs to classic and timeless pieces. 
+            Whether you're furnishing your home or office, Furnizza has the perfect options to suit your style and budget.
+        </p>
+        <p>
+            At Furnizza, we prioritize user experience, offering seamless navigation, detailed product descriptions, and
+            high-quality images to help you make informed decisions. With secure payment options and reliable delivery services,
+            we aim to provide a hassle-free shopping experience for every customer.
+        </p>
+        <p>
+            Explore our platform and discover the perfect furniture to transform your space into something extraordinary.
+        </p>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Furnizza. All rights reserved.</p>
+    </footer>
+
+    {% include 'core/dropdown.html' %}
+</body>
+
+</html>

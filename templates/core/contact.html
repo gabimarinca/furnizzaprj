@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funrnizza Shopping Center</title>
+    <link rel="stylesheet" type='text/css' href="{% static 'assets/css/general.css' %}">
+</head>
+
+<body>
+    {% include 'core/header.html' %}
+
+    <main>
+        <h1>Furnizza contact</h1>
+        <p>
+            Adresa: Observatorului 32, Cluj-Napoca, Cluj, Romania
+        </p>
+        <p>
+            Telefon: +40 732 234 234
+        </p>
+        <p>
+            E-mail: Furnizza@ecommerce.com
+        </p>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Furnizza. All rights reserved.</p>
+    </footer>
+    {% include 'core/dropdown.html' %}
+</body>
+
+</html>

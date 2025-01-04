@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funrnizza Shopping Center</title>
+    <link rel="stylesheet" type='text/css' href="{% static 'assets/css/general.css' %}">
+</head>
+
+<body>
+    {% include 'core/header.html' %}
+    {% include 'core/dropdown.html' %}
+</body>
+ 
+<form action = "" method = "POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type = "submit">Register</button>
+</form> 
+<p>Already have an account? <a href="http://127.0.0.1:8000/user/sign-in">Login here</a>.</p>
