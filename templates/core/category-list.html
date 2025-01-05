@@ -4,30 +4,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funrnizza Shopping Center</title>  
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 </head>
 
 <body>
 
     {% include 'core/header.html' %}
-
     <section class="hero" style="background: url('{% static 'assets/imgs/background2.jpg' %}') no-repeat center center/cover;">
-        <h1>Welcome to Furnizza Shopping Center</h1>
+        <h1>Categories</h1>
     </section>
+    <h2>Showing {{categories.count}} results:</h2>   
 
     <section class="product-container">
     
-        {% for p in products %}
+        {% for c in categories %}
 
         <div class="product-card">
-            <img src="{{p.image.url}}" alt="">
-            <h4>{{p.category.title}}</h4>
-            <h2>{{p.title}}</h2>
-            <p>{{p.price}} RON</p>
-            <p>by: {{p.vendor.title}}</p>
-            <a href="#" class="button">Add to cart</a>
+            <a href = "{% url 'core:category-product-list' c.categoryid %}">
+            <img src="{{c.image.url}}" alt="">
+            </a>
+            <h2>{{c.title}}</h2>    
+            <div>{{c.category.count}} Product{{c.category.count|pluralize}}</div>
         </div>
         {% endfor %}
     </section>

@@ -14,9 +14,9 @@
     {% include 'core/header.html' %}
 
     <section class="hero" style="background: url('{% static 'assets/imgs/background2.jpg' %}') no-repeat center center/cover;">
-        <h1>Welcome to Furnizza Shopping Center</h1>
+        <h1>{{category.title}}</h1>
     </section>
-
+    <h2>Showing {{products.count}} result{{products.count|pluralize}}:</h2>   
     <section class="product-container">
     
         {% for p in products %}
