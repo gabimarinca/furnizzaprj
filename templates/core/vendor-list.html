@@ -11,20 +11,23 @@
 
     {% include 'core/header.html' %}
     <section class="hero" style="background: url('{% static 'assets/imgs/background2.jpg' %}') no-repeat center center/cover;">
-        <h1>Categories</h1>
+        <h1>Vendors</h1>
     </section>
-    <h2>Showing {{categories.count}} results:</h2>   
+    <h2>We have {{vendors.count}} vendors now:</h2>   
 
     <section class="product-container">
     
-        {% for c in categories %}
+        {% for v in vendors %}
 
-        <div class="product-card">
-            <a href = "{% url 'core:category-product-list' c.categoryid %}">
-            <img src="{{c.image.url}}" alt="">
+        <div class="product-card"> 
+            <a href = "{% url 'core:vendor-detail' v.vendorid %}">
+            <img src="{{v.image.url}}" alt="">
             </a>
-            <h2><a href = "{% url 'core:category-product-list' c.categoryid %}">{{c.title}}</a></h2>    
-            <div>{{c.category.count}} Product{{c.category.count|pluralize}}</div>
+            <div>Since {{v.date|date:"Y"}}</div>
+            <h2><a href = "{% url 'core:vendor-detail' v.vendorid %}">{{v.title}}</a></h2>
+            <h4>{{v.product.all.count}} products</h4>    
+            <div>Address: {{v.address}}</div>   
+            <div>Contact: {{v.contact}}</div>
         </div>
         {% endfor %}
     </section>

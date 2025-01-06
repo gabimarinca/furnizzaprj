@@ -1,46 +1,48 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funrnizza Shopping Center</title>  
-    
+    <title>Funrnizza Shopping Center</title> 
 </head>
 
 <body>
-
     {% include 'core/header.html' %}
 
-    <section class="hero" style="background: url('{% static 'assets/imgs/background2.jpg' %}') no-repeat center center/cover;">
-        <h1>Products</h1>
-    </section>
-    <h2>Showing {{products.count}} results:</h2>   
-    <section class="product-container">
+    <main>
+        <h1>About {{vendor.title}}</h1>
+        <p>
+            {{vendor.description}}
+        </p>
+
+        <div>Since {{vendor.date|date:"Y"}}</div>   
+        <div>Address: {{vendor.address}}</div>   
+        <div>Contact: {{vendor.contact}}</div> 
+        <h2>Showing {{products.count}} result{{products.count|pluralize}}:</h2> 
+
+        <section class="product-container">
     
         {% for p in products %}
 
         <div class="product-card">
-            <a href = "{% url 'core:product-detail' p.prodid %}">
             <img src="{{p.image.url}}" alt="">
-            </a>
             <h4>{{p.category.title}}</h4>
-            <a href = "{% url 'core:product-detail' p.prodid %}">
             <h2>{{p.title}}</h2>
-            </a>
             <p>{{p.price}} RON</p>
             <p>by: {{p.vendor.title}}</p>
             <a href="#" class="button">Add to cart</a>
         </div>
         {% endfor %}
     </section>
+    </main>
 
     <footer class="footer">
-        <p>&copy; 2024 E-Store. All rights reservesadasd.</p>
+        <p>&copy; 2024 Furnizza. All rights reserved.</p>
     </footer>
-    {% include 'core/dropdown.html' %}
 
+    {% include 'core/dropdown.html' %}
 </body>
 
 </html>

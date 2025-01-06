@@ -14,20 +14,22 @@
                 <li>
                     <a href="#" id="category-link">Category⇩</a>
                     <ul class="dropdown" id="category-dropdown">
-                        <li><a href="#">Mobilier</a></li>
-                        <li><a href="#">Fashion</a></li>
-                        <li><a href="#">Home & Garden</a></li>
-                        <li><a href="#">Books</a></li>
+                        {% for c in categories %}
+                        <li><a href="{% url 'core:category-product-list' c.categoryid %}">{{c.title}}</a></li>
+                        {% endfor %}
+                        <hr>
+                        <li><a href = "{% url 'core:category-list' %}">All Categories</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Shop</a></li>
                 <li>
                     <a href="#" id="vendors-link">Vendors⇩</a>
                     <ul class="dropdown" id="vendors-dropdown">
-                        <li><a href="#">Ikea</a></li>
-                        <li><a href="#">Furnizza</a></li>
-                        <li><a href="#">Amazon</a></li>
-                        <li><a href="#">Bonami</a></li>
+                        {% for v in vendors %}
+                        <li><a href="{% url 'core:vendor-detail' v.vendorid %}">{{v.title}}</a></li>
+                        {% endfor %}
+                        <hr>
+                        <li><a href = "{% url 'core:vendor-list' %}">All Vendors</a></li>
                     </ul>
                 </li>
                 <li><a href="http://127.0.0.1:8000/about">About</a></li>

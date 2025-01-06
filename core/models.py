@@ -63,6 +63,7 @@ class Vendor(models.Model):
     rating = models.CharField(max_length=100, default= "100")
     
     user = models.ForeignKey(User, on_delete = models.SET_NULL,null=True) # models.CASCADE
+    date = models.DateTimeField(auto_now_add=True, null=True,blank=True)
 
     class Meta:
         verbose_name_plural = "Vendors"
@@ -77,14 +78,14 @@ class Product(models.Model):
     prodid = ShortUUIDField(unique=True, length = 10, max_length = 20, prefix= "prod", alphabet= "abcdefghijklmn123456789")
     user = models.ForeignKey(User, on_delete = models.SET_NULL,null=True)
     category = models.ForeignKey(Category, on_delete = models.SET_NULL,null=True, related_name="category")
-    vendor = models.ForeignKey(Vendor, on_delete = models.SET_NULL,null=True)
+    vendor = models.ForeignKey(Vendor, on_delete = models.SET_NULL,null=True, related_name="product")
     
     title = models.CharField(max_length=75, default="Furniture product")
     image = models.ImageField(upload_to="user_directory_path", default="product.jpg")
     description = models.TextField(null=True, blank=True, default="This is the product!")
 
     price = models.DecimalField(max_digits=9999999999999,decimal_places=2,default="20.99")
-    oldPrice = models.DecimalField(max_digits=9999999999999,decimal_places=2,default="24.99")
+    old_price = models.DecimalField(max_digits=9999999999999,decimal_places=2,default="24.99")
     specifications = models.TextField(null=True, blank=True)
     #tags = models.ForeignKey(Tags, on_delete = models.SET_NULL,null=True)
     product_status = models.CharField(choices= STATUS, max_length=10, default="in_review")
@@ -109,7 +110,7 @@ class Product(models.Model):
         return self.title
     
     def get_percentage(self):
-        new_price = ((self.old_price - self.price) / self.oldPrice) * 100
+        new_price = ((self.old_price - self.price) / self.old_price) * 100
         return new_price
     
 class ProductImages(models.Model):

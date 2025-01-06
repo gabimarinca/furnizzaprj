@@ -22,9 +22,13 @@
         {% for p in products %}
 
         <div class="product-card">
+            <a href = "{% url 'core:product-detail' p.prodid %}">
             <img src="{{p.image.url}}" alt="">
+            </a>
             <h4>{{p.category.title}}</h4>
+            <a href = "{% url 'core:product-detail' p.prodid %}">
             <h2>{{p.title}}</h2>
+            </a>
             <p>{{p.price}} RON</p>
             <p>by: {{p.vendor.title}}</p>
             <a href="#" class="button">Add to cart</a>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funrnizza Shopping Center</title>
+    <link rel="stylesheet" type='text/css' href="{% static 'assets/css/general.css' %}">
+</head>
+
+<body>
+    {% include 'core/header.html' %}
+
+
+    <h2>{{product.title}}</h2>
+    <p>{{product.category}}</p>
+    <p>by {{product.vendor}}</p>
+    <p>    -{{product.get_percentage|floatformat:0}}%</p>
+    <hr>
+    <a>
+    <img src="{{product.image.url}}" alt="">
+    
+    {{product.price}} RON
+    <a href="#" class="button">Add to cart</a>   
+    </a>
+    <h4>Delivery</h4>
+    <p>🏠︎{{address.street}}, {{address.city}}, {{address.zipCode}}, {{address.country}}
+        <br>
+        {% if address.status == True %}
+        ✔️Verified Address
+        {% else %}
+        ❌Unverified Address
+        {% endif %}
+    </p>
+    <hr>
+
+    <h4>Vendor: {{product.vendor.title}}</h4>
+    <p>📞{{product.vendor.contact}}</p>
+    <p>🏠︎{{product.vendor.address}}</p>
+    <p>Rating: {{product.vendor.rating}}</p>
+    <p>Shipping On Time: {{product.vendor.shippingOnTime}}</p>
+    <p>Chat Response Time: {{product.vendor.ChatRespTime}} working days</p>
+
+    <hr>
+    <p>{{product.description}}</p>
+    <hr>
+    <p>{{product.specifications}}</p>
+    {% if products %}
+    <h3>Related Products</h3>
+    {% endif %}
+    <hr>
+    <section class="product-container">
+    
+        {% for p in products %}
+
+        <div class="product-card">
+            <a href = "{% url 'core:product-detail' p.prodid %}">
+            <img src="{{p.image.url}}" alt="">
+            </a>
+            <h4>{{p.category.title}}</h4>
+            <a href = "{% url 'core:product-detail' p.prodid %}">
+            <h2>{{p.title}}</h2>
+            </a>
+            <p>{{p.price}} RON</p>
+            <p>by: {{p.vendor.title}}</p>
+            <a href="#" class="button">Add to cart</a>
+        </div>
+        {% endfor %}
+    </section>
+    
+    <footer class="footer">
+        <p>&copy; 2024 Furnizza. All rights reserved.</p>
+    </footer>
+    {% include 'core/dropdown.html' %}
+</body>
+
+</html>
