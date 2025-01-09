@@ -1,7 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from core.models import Category, Vendor, Product, ProductImages, CartOrder, CartOrderItems, Review, Wishlist, Address
- 
+from django.db.models import Avg
+from core.forms import ReviewForm
 # Create your views here.
 def index(request):
    #products = Product.objects.all().order_by("-id")
@@ -63,9 +64,18 @@ def product_detail_view(request,prodid):
    product = Product.objects.get(prodid = prodid)
    #product = get_object_or_404(Product, prodid = prodid)
    products = Product.objects.filter(category = product.category).exclude(prodid = prodid)
+   
+   reviews = Review.objects.filter(product = product).order_by("-date")
+   review_form = ReviewForm()
+
+   average_rating = Review.objects.filter(product = product).aggregate(rating = Avg('rating'))
+
    context = {
+      "average_rating" : average_rating,
       "product" : product,
       "products" : products,
+      "reviews" : reviews,
+      "review_form" : review_form,
    }
    return render(request, "core/product-detail.html", context)
 
@@ -75,3 +85,30 @@ def about(request):
 
 def contact(request):
    return render(request, "core/contact.html")
+
+def ajax_add_review(request, prodid):
+   product = Product.objects.get(pk = prodid)
+   user = request.user
+
+   comment = ReviewForm.objects.create(
+      user = user,
+      product = product,
+      comment = request.POST['comment'],
+      rating = request.POST['rating'],
+   )
+
+   context = {
+      'user' : user.username,
+      'comment' : request.POST['comment'],
+      'rating' :request.POST['rating'],  
+   }
+
+   average_reviews =Review.objects.filter(product = product).aggregate(rating = Avg("rating"))
+   
+   return JsonResponse(
+      {
+      'bool' : True,
+      'context' : context,
+      'average_reviews' : average_reviews
+      }
+   )

@@ -46,6 +46,24 @@
     <p>{{product.description}}</p>
     <hr>
     <p>{{product.specifications}}</p>
+
+    <h3>Reviews({{reviews.count}}) {{average_rating.rating|floatformat}} out of 5</h3>
+    {% for r in reviews%}
+    <hr>
+    <a>👨🏻‍💼{{r.user.username|title}}</a>
+    <a>{{r.rating}}</a>
+    <a>- {{r.date|date:"d M, Y"}}</a>
+    <p>{{r.comment}}</p>
+    {% endfor %}
+    <h4>Add a review</h4>
+    <form class = "comment-form" action = "{% url 'core:ajax-add-review' product.prodid %}" id = "commentForm" method = "POST">
+    {% csrf_token %}
+    {{review_form.comment}}
+    {{review_form.rating}}
+    </form>
+    <p>
+    <a href="#" class="button">Submit review</a>
+    </p>
     {% if products %}
     <h3>Related Products</h3>
     {% endif %}
