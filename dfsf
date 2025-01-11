@@ -1,0 +1,23 @@
+[33mcommit 7ed8981d8867c7e073da960892a7f29101b8cefb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Gabi <marinca.gabi15@gmail>
+Date:   Thu Jan 9 22:24:13 2025 +0200
+
+    minor changes to product-detail
+
+[33mcommit 433f5e870fa1044a6cd3193a453ada7b697f0554[m
+Author: Gabi <marinca.gabi15@gmail>
+Date:   Mon Jan 6 15:50:38 2025 +0200
+
+    context_processors, product/vendor details
+
+[33mcommit f3f4f57dcd26c90e42bf72fdb7c893c73aeffd4d[m
+Author: Gabi <marinca.gabi15@gmail>
+Date:   Sun Jan 5 22:06:09 2025 +0200
+
+    category and products inital list
+
+[33mcommit 2e065997a673a19f1171719a9e56a53b526a5550[m
+Author: Gabi <marinca.gabi15@gmail>
+Date:   Sat Jan 4 19:38:30 2025 +0200
+
+    initial commit

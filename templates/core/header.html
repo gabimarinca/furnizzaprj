@@ -4,8 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funrnizza Shopping Center</title>
     <link rel="stylesheet" type='text/css' href="{% static 'assets/css/general.css' %}">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 
  <header>
         <h1>Furnizza</h1>
@@ -42,9 +43,10 @@
                     <ul class="dropdown" id="account-dropdown">
                         <li><a href="#">View Profile</a></li>
                         <li><a href="#">View Cart</a></li>
-                        <li><a href=" url 'userauths:sign-out'">Sign-out</a></li>
+                        <li><a href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
                     </ul>
                 </li>
+                 <li>Cart:<span class="cart-items-count">{{request.session.cart_data_obj|length}}</span></li>
             </ul>
         </nav>
         <form action="{}" method="GET" style="display: flex; margin-top: 10px;">

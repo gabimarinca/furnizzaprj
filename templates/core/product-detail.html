@@ -6,24 +6,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funrnizza Shopping Center</title>
-    <link rel="stylesheet" type='text/css' href="{% static 'assets/css/general.css' %}">
+    <link rel="stylesheet" type='text/css' href="{% static 'assets/css/general.css' %}"> 
+
 </head>
 
 <body>
     {% include 'core/header.html' %}
-
 
     <h2>{{product.title}}</h2>
     <p>{{product.category}}</p>
     <p>by {{product.vendor}}</p>
     <p>    -{{product.get_percentage|floatformat:0}}%</p>
     <hr>
-    <a>
+    <div>
     <img src="{{product.image.url}}" alt="">
     
-    {{product.price}} RON
-    <a href="#" class="button">Add to cart</a>   
-    </a>
+    RON <span id="current-product-price">{{product.price}}</span>
+    <input type="number" value="1" name = "" id = "product-quantity">
+    <input type = "hidden" value ={{product.id}} class="product-id" name="" id="" >
+    <input type = "hidden" value ={{product.title}} class ="product-title" name="" id="" >
+    <button type = "submit" class="button button-add-to-cart" id = "add-to-cart-btn">Add to cart</a>   
+
+
+
+    </div>
     <h4>Delivery</h4>
     <p>🏠︎{{address.street}}, {{address.city}}, {{address.zipCode}}, {{address.country}}
         <br>
@@ -80,12 +86,53 @@
             <a href = "{% url 'core:product-detail' p.prodid %}">
             <h2>{{p.title}}</h2>
             </a>
-            <p>{{p.price}} RON</p>
+           RON <span>{{p.price}}</span>
             <p>by: {{p.vendor.title}}</p>
             <a href="#" class="button">Add to cart</a>
         </div>
         {% endfor %}
     </section>
+    
+
+    <script>
+    ///////////////////////////////////////////////////////////////////////     JS        ////////////////////////////////////////////////////
+        $(document).ready(function () {
+            console.log("ready!");
+
+            $("#add-to-cart-btn").on("click", function () {
+                let quantity = $("#product-quantity").val();
+                let product_title = $(".product-title").val();
+                let product_id = $(".product-id").val();
+                let product_price = $("#current-product-price").text();
+                let this_val = $(this);
+
+                console.log("Quantity:", quantity);
+                console.log("Title:", product_title);
+                console.log("Price:", product_price);
+                console.log("ID:", product_id);
+                console.log("Current element:", this_val);
+                $.ajax({
+                    url: '/add-to-cart',
+                    data:{
+                        'id' : product_id,
+                        'quantity' : quantity,
+                        'title' : product_title,
+                        'price' : product_price,
+                    },
+                    dataType: 'json',
+                    beforeSend: function(){
+                        console.log("Adding Product to Cart..."); 
+                    },
+                    success: function(response){
+                        this_val.html("Item added to cart")
+                        console.log("Added Product to Cart...");
+                        $(".cart-items-count").text(response.totalcartitems)
+                    }
+            });
+        });
+        })
+        /////////////////////////////////////////////////////////////////////////       JS           ////////////////////////////////////////////////////////
+    </script>
     
     <footer class="footer">
         <p>&copy; 2024 Furnizza. All rights reserved.</p>
