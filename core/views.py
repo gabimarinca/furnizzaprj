@@ -116,13 +116,15 @@ def ajax_add_review(request, prodid):
       }
    )
 
-def add_to_cart(request):
+def add_to_cart(request):  
    cart_product = {}
-   
+
    cart_product[str(request.GET['id'])] = {
       'title': request.GET['title'],
       'quantity' : request.GET['quantity'],
       'price' : request.GET['price'],
+      'image' : request.GET['image'],
+      'prodid' : request.GET['prodid'],
       
    }
    if 'cart_data_obj' in request.session:

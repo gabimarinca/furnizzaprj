@@ -35,14 +35,14 @@
             <a href = "{% url 'core:product-detail' p.prodid %}">
             <h2>{{p.title}}</h2>
             </a>
-           <span>RON</span> <span class ="current-product-price-{{p.id}}">{{p.price}} RON</span>
+           <span>RON</span> <span class ="current-product-price-{{p.id}}">{{p.price}}</span>
           
             <p>by: {{p.vendor.title}}</p>
             <input type="hidden" value="1" name = "" id = "product-quantity" class = "product-quantity-{{p.id}}" >
             <input type = "hidden" class = "product-prodid-{{p.id}}" value="{{p.prodid}}">
             <input type = "hidden" class = "product-image-{{p.id}}" value="{{p.image.url}}">
             <input type = "hidden" class="product-id-{{p.id}}" value = "{{p.id}}">
-            <input type = "hidden" class="product-title-{{p.title}}" value = "{{p.title}}">
+            <input type = "hidden" class="product-title-{{p.id}}" value = "{{p.title}}">
             <button class = "add add-to-cart-btn" data-index="{{ p.id }}" id = "add-to-cart-btn">Add</a>
         </div>
         {% endfor %}
@@ -56,11 +56,11 @@
                 let index = this_val.attr("data-index")
 
                 let quantity = $(".product-quantity-"+ index).val();
-                let product_title = $(".product-title-" + index).val();
+                let product_title = $(".product-title-" + index).val()
                 let product_id = $(".product-id-" + index).val();
                 let product_price = $(".current-product-price-" + index).text();
                 let product_prodid = $(".product-prodid-" + index).val();
-                let product_image = $(".product-image-"+index)
+                let product_image = $(".product-image-"+index).val()
 
                 console.log("Quantity:", quantity);
                 console.log("Title:", product_title);
@@ -74,6 +74,8 @@
                     url: '/add-to-cart',
                     data:{
                         'id' : product_id,
+                        'prodid' : product_prodid,
+                        'image' : product_image,
                         'quantity' : quantity,
                         'title' : product_title,
                         'price' : product_price,
@@ -83,7 +85,7 @@
                         console.log("Adding Product to Cart..."); 
                     },
                     success: function(response){
-                        this_val.html("Item added to cart")
+                        this_val.html("added")
                         console.log("Added Product to Cart...");
                         $(".cart-items-count").text(response.totalcartitems)
                     }
