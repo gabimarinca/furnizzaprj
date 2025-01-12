@@ -1,8 +1,9 @@
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from core.models import Category, Vendor, Product, ProductImages, CartOrder, CartOrderItems, Review, Wishlist, Address
 from django.db.models import Avg
 from core.forms import ReviewForm
+from django.contrib import messages
 # Create your views here.
 def index(request):
    #products = Product.objects.all().order_by("-id")
@@ -117,6 +118,7 @@ def ajax_add_review(request, prodid):
    )
 
 def add_to_cart(request):  
+
    cart_product = {}
 
    cart_product[str(request.GET['id'])] = {
@@ -140,3 +142,22 @@ def add_to_cart(request):
    else:
       request.session['cart_data_obj'] = cart_product
    return JsonResponse({"data": request.session['cart_data_obj'], 'totalcartitems' : len(request.session['cart_data_obj'])})
+
+
+def cart_view(request):
+   cart_total_amount = 0
+   if 'cart_data_obj' in request.session:
+      for prod_id, item in request.session['cart_data_obj'].items():
+         cart_total_amount += int(item['quantity']) * float(item['price'])
+      return render(request, "core/cart.html", {"cart_data": request.session['cart_data_obj'], 'totalcartitems' : len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount})
+   else:
+       messages.warning(request, "Your cart is empty!")
+       return redirect("core:index")    
+   
+def checkout_view(request):
+   cart_total_amount = 0
+   if 'cart_data_obj' in request.session:
+      for prod_id, item in request.session['cart_data_obj'].items():
+         cart_total_amount += int(item['quantity']) * float(item['price'])
+
+   return render(request, "core/checkout.html", {"cart_data": request.session['cart_data_obj'], 'totalcartitems' : len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount})

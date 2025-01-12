@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funrnizza Shopping Center</title>
+    <link rel="stylesheet" type='text/css' href="{% static 'assets/css/general.css' %}">
+</head>
+
+<body>
+    {% include 'core/header.html' %}
+
+    <main>
+    <h1>Checkout</h1>   
+    <h4>There are {{totalcartitems}} items in your cart!</h4>
+
+    <h2>Billing details</h2>
+    <input type="text" placeholder="First name*">
+    <h2>Your order</h2>
+    <button href="#">Place order</button>
+    <a>RON {{cart_total_amount}}</a>
+    <h5>________________________________________Subtotal</h5>
+    {% for prod_id,item in cart_data.items %}
+    <br>
+    <img src="{{item.image}}" alt="#" class="logo">
+    <a href="{% url 'core:product-detail' item.prodid %}">{{item.title}}</a>
+    <a>  x{{item.quantity}} </a>
+    <a>RON {{item.price}}</a>
+    <a>--RON {% widthratio item.price 1 item.quantity %}</a>
+    {% endfor %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Furnizza. All rights reserved.</p>
+    </footer>
+    {% include 'core/dropdown.html' %}
+</body>
+
+</html>

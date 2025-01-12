@@ -23,7 +23,7 @@
                         <li><a href = "{% url 'core:category-list' %}">All Categories</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Shop</a></li>
+                <li><a href="{% url 'core:product-list' %}">Shop</a></li>
                 <li>
                     <a href="#" id="vendors-link">Vendors⇩</a>
                     <ul class="dropdown" id="vendors-dropdown">
@@ -38,7 +38,7 @@
                 <li><a href="http://127.0.0.1:8000/contact">Contact</a></li>
                 <li>
                     <a href="#" id="account-link">
-                        <img src="{% static 'assets/imgs/accountLogo.png' %}" alt="Account" class="account-logo">
+                        <img src="{% static 'assets/imgs/accountLogo.png' %}" alt="Account" class="logo">
                     </a>
                     <ul class="dropdown" id="account-dropdown">
                         <li><a href="#">View Profile</a></li>
@@ -46,7 +46,16 @@
                         <li><a href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
                     </ul>
                 </li>
-                 <li>Cart:<span class="cart-items-count">{{request.session.cart_data_obj|length}}</span></li>
+                <li>
+                    <a href="#" id="cart-link">
+                        <img src="{% static 'assets/imgs/cart-logo.jpg' %}" alt="cart" class="logo">
+                    </a>
+                    <ul class="dropdown" id="cart-dropdown">
+                        <li><a href="{% url 'core:cart' %}">View Cart</a></li>
+                        <li><a href="{% url 'core:checkout' %}">Checkout</a></li> 
+                    </ul>
+                 </li>
+                    <span class="cart-items-count">{{request.session.cart_data_obj|length}}</span>
             </ul>
         </nav>
         <form action="{}" method="GET" style="display: flex; margin-top: 10px;">
