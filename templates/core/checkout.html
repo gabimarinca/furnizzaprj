@@ -15,9 +15,7 @@
     <main>
     <h1>Checkout</h1>   
     <h4>There are {{totalcartitems}} items in your cart!</h4>
-
-    <h2>Billing details</h2>
-    <input type="text" placeholder="First name*">
+ 
     <h2>Your order</h2> 
     <a href="{% url 'core:payment-completed' %}" class="button">Make order</a>
     <a>RON {{cart_total_amount}}</a>

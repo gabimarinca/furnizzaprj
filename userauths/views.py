@@ -91,3 +91,30 @@ def logout_view(request):
     logout(request)
     messages.success(request, "You logged out!") 
     return redirect("userauths:sign-in")
+
+def profile_view(request):
+    if not request.user.is_authenticated:
+        messages.warning(request, "You need to be logged in to view your profile.")
+        return redirect("userauths:sign-in")
+    if request.method == "POST":
+        username = request.POST.get("username")
+        bio = request.POST.get("bio")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+
+        user = request.user
+        user.username = username
+        user.bio = bio
+        user.phone = phone
+        user.save()
+
+        messages.success(request, "Your profile was updated successfully!")
+        return redirect("userauths:profile")
+ 
+    context = {
+        "username": request.user.username,
+        "bio": request.user.bio,
+        "email": request.user.email,
+        "phone" : request.user.phone,
+    }
+    return render(request, "userauths/profile.html", context)

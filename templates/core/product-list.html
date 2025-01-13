@@ -43,7 +43,17 @@
             <input type = "hidden" class = "product-image-{{p.id}}" value="{{p.image.url}}">
             <input type = "hidden" class="product-id-{{p.id}}" value = "{{p.id}}">
             <input type = "hidden" class="product-title-{{p.id}}" value = "{{p.title}}">
-            <button class = "add add-to-cart-btn" data-index="{{ p.id }}" id = "add-to-cart-btn">Add</a>
+            <button class = "add add-to-cart-btn" data-index="{{ p.id }}" id = "add-to-cart-btn">Add</a></button>
+            <br>
+            <a href="#" class="heart" onclick="toggleHeart(this)">♡</a>
+
+            <script> 
+                function toggleHeart(element) {
+                    element.classList.toggle('liked');
+                    element.innerHTML = element.classList.contains('liked') ? '❤️' : '♡'; 
+                }
+            </script>
+
         </div>
         {% endfor %}
     </section>
