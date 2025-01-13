@@ -18,8 +18,8 @@
 
     <h2>Billing details</h2>
     <input type="text" placeholder="First name*">
-    <h2>Your order</h2>
-    <button href="#">Place order</button>
+    <h2>Your order</h2> 
+    <a href="{% url 'core:payment-completed' %}" class="button">Make order</a>
     <a>RON {{cart_total_amount}}</a>
     <h5>________________________________________Subtotal</h5>
     {% for prod_id,item in cart_data.items %}
@@ -30,6 +30,7 @@
     <a>RON {{item.price}}</a>
     <a>--RON {% widthratio item.price 1 item.quantity %}</a>
     {% endfor %}
+    <br>
     </main>
 
     <footer class="footer">

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - Payment Receipt</title>    
+</head>
+<body>
+    {% include 'core/header.html' %}
+    <div class="invoice-container">
+        <div class="header">
+            <h1>Payment Invoice</h1>
+            <p>Thank you for your purchase!</p>
+        </div>
+
+        <table class="invoice-details">
+            <tr>
+                {% load tz %}   
+                <td><strong>Invoice Number:</strong> #INV123456</td>
+                <td class="right"><strong>Date:</strong> 13 January 2024</td>
+            </tr>
+            <tr>
+                <td><strong>Due Date:</strong> 19th January 2025</td>
+                <td class="right"><strong>Payment Method:</strong> Credit Card</td>
+            </tr>
+        </table>
+                    <tr>
+                <td>Gabi Marinca<br>Stadionului 24<br>Gilau, Cluj</td> 
+            </tr>
+        </table>
+
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price (RON)</th>
+                    <th>Total (RON)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prod_id,item in cart_data.items %}
+                <tr>
+                    <td>{{item.title}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.price}}</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3" class="right"><strong>Total Amount:</strong></td>
+                    <td><strong>{% widthratio item.price 1 item.quantity %}</strong></td>
+                </tr>
+                {% endfor %} 
+                <tr class="total-row">
+                    <td colspan="3" class="right"><strong>Grand Total:</strong></td>
+                    <td><strong>{{cart_total_amount}}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Furnizza. All rights reserved.</p>
+    </footer>
+    {% include 'core/dropdown.html' %}
+</body>
+
+</html>

@@ -146,6 +146,7 @@ def add_to_cart(request):
 
 def cart_view(request):
    cart_total_amount = 0
+   buyer_name = request.user.get_full_name() if request.user.is_authenticated else "Guest User"
    if 'cart_data_obj' in request.session:
       for prod_id, item in request.session['cart_data_obj'].items():
          cart_total_amount += int(item['quantity']) * float(item['price'])
@@ -161,3 +162,10 @@ def checkout_view(request):
          cart_total_amount += int(item['quantity']) * float(item['price'])
 
    return render(request, "core/checkout.html", {"cart_data": request.session['cart_data_obj'], 'totalcartitems' : len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount})
+
+def payment_completed_view(request):
+   cart_total_amount = 0
+   if 'cart_data_obj' in request.session:
+      for prod_id, item in request.session['cart_data_obj'].items():
+         cart_total_amount += int(item['quantity']) * float(item['price'])
+   return render(request, 'core/payment-completed.html',{"cart_data": request.session['cart_data_obj'], 'totalcartitems' : len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount})
