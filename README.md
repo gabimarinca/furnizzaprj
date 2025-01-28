@@ -1,2 +1,3 @@
  An e-commerce furniture soft that allows users to browse a diverse catalog, view details, add items to the cart, and complete orders.
- This project is still in progress and should be done until 31.01.2025
+ This project can still be further expanded and there can be added new functionalities to it. Not all functionalities of an e-commerce website were implemented.
+ Its purpose was to learn to work with django-python and understand basic functionalities. Front-end is implemented poorly and I focussed on backend.
