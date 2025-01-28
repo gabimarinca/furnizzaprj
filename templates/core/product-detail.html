@@ -12,7 +12,7 @@
 
 <body>
     {% include 'core/header.html' %}
-
+    <main>
     <h2>{{product.title}}</h2>
     <p>{{product.category}}</p>
     <p>by {{product.vendor}}</p>
@@ -93,7 +93,7 @@
         </div>
         {% endfor %}
     </section>
-    
+    <main>
 <script>
       $(document).ready(function () {
             console.log("ready!");

@@ -13,13 +13,18 @@
 
     {% include 'core/header.html' %}
 
+    <main>
     <section class="hero" style="background: url('{% static 'assets/imgs/background2.jpg' %}') no-repeat center center/cover;">
-        <h1>Welcome to Furnizza Shopping Center</h1>
+        <h1>  Welcome to Furnizza Furniture Shopping Center!</h1>
     </section>
+    <a>Don't have an account?</a><a href="{% url 'userauths:sign-up' %}" class = "button"> Register</a>
+    <br>
+    <a>Already have an account? </a><a href="{% url 'userauths:sign-in' %}" class = "button"> Log in</a>
+    </main>
 
     
     <footer class="footer">
-        <p>&copy; 2024 E-Store. All rights reservesadasd.</p>
+        <p>&copy; 2024 Furnizza - All rights reserved</p>
     </footer>
     {% include 'core/dropdown.html' %}
 
